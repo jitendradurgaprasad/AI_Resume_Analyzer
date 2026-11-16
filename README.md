@@ -4,7 +4,9 @@
 ![Next.js](https://img.shields.io/badge/Next.js_14-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel_Ready-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel_Live-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+**Live Production App**: [https://ai-resume-analyzer-xi-ruby-67.vercel.app](https://ai-resume-analyzer-xi-ruby-67.vercel.app)
 
 An advanced, enterprise-grade AI Resume Analyzer, Applicant Tracking System (ATS) simulator, and recruiter intelligence platform. Designed for candidates, hiring managers, and HR offices to evaluate resumes with high accuracy, uncover missing critical keywords, predict career trajectories, and generate interview guides.
 
