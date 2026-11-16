@@ -13,36 +13,35 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
   score,
   grade,
   tier,
-  size = 200,
+  size = 180,
 }) => {
-  const strokeWidth = 14;
+  const strokeWidth = 12;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  // Semi-circle/three-quarter arc (270 degrees)
   const arcLength = circumference * 0.75;
   const strokeDashoffset = arcLength - (score / 100) * arcLength;
 
   let strokeColor = "#10b981"; // emerald
-  let textColor = "text-emerald-400";
-  let tierBadgeBg = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+  let textColor = "text-emerald-600";
+  let tierBadgeBg = "bg-emerald-50 text-emerald-700 border-emerald-200";
 
   if (score < 55) {
     strokeColor = "#ef4444"; // red
-    textColor = "text-red-400";
-    tierBadgeBg = "bg-red-500/10 text-red-400 border-red-500/30";
+    textColor = "text-red-600";
+    tierBadgeBg = "bg-red-50 text-red-700 border-red-200";
   } else if (score < 75) {
     strokeColor = "#f59e0b"; // amber
-    textColor = "text-amber-400";
-    tierBadgeBg = "bg-amber-500/10 text-amber-400 border-amber-500/30";
+    textColor = "text-amber-600";
+    tierBadgeBg = "bg-amber-50 text-amber-700 border-amber-200";
   } else if (score < 88) {
-    strokeColor = "#3b82f6"; // blue
-    textColor = "text-blue-400";
-    tierBadgeBg = "bg-blue-500/10 text-blue-400 border-blue-500/30";
+    strokeColor = "#2563eb"; // blue
+    textColor = "text-blue-600";
+    tierBadgeBg = "bg-blue-50 text-blue-700 border-blue-200";
   }
 
   return (
-    <div className="flex flex-col items-center justify-center relative">
-      <div className="relative" style={{ width: size, height: size * 0.85 }}>
+    <div className="flex flex-col items-center justify-center">
+      <div className="relative" style={{ width: size, height: size * 0.82 }}>
         <svg
           width={size}
           height={size}
@@ -55,7 +54,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             cy={size / 2}
             r={radius}
             fill="transparent"
-            stroke="#1e293b"
+            stroke="#e2e8f0"
             strokeWidth={strokeWidth}
             strokeDasharray={`${arcLength} ${circumference}`}
             strokeLinecap="round"
@@ -73,32 +72,32 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             style={{
-              transition: "stroke-dashoffset 1s ease-in-out, stroke 0.5s ease",
+              transition: "stroke-dashoffset 0.8s ease-in-out",
             }}
           />
         </svg>
 
         {/* Center Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-          <span className={`text-5xl font-black tracking-tight ${textColor}`}>
+          <span className={`text-4xl font-extrabold tracking-tight ${textColor}`}>
             {score}
           </span>
-          <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase mt-0.5">
-            ATS Score / 100
+          <span className="text-[11px] font-semibold text-slate-500 uppercase mt-0.5">
+            ATS Score
           </span>
-          <div className="flex items-center gap-1.5 mt-2">
-            <span className="text-sm font-bold text-white px-2 py-0.5 bg-slate-800 rounded border border-slate-700">
+          <div className="mt-1">
+            <span className="text-xs font-bold text-slate-800 px-2 py-0.5 bg-slate-100 rounded border border-slate-200">
               Grade: {grade}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="mt-1">
+      <div className="mt-2">
         <span
           className={`px-3 py-1 rounded-full text-xs font-medium border ${tierBadgeBg}`}
         >
-          {tier} Candidate Tier
+          {tier} Tier
         </span>
       </div>
     </div>

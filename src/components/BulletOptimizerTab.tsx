@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ParsedResume } from "../lib/analyzer/sectionParser";
 import { optimizeBullets, BulletImprovement } from "../lib/analyzer/bulletOptimizer";
-import { Zap, Copy, Check, ArrowRight, AlertCircle, Sparkles } from "lucide-react";
+import { Zap, Copy, Check, ArrowDown, AlertCircle, Sparkles } from "lucide-react";
 
 interface BulletOptimizerTabProps {
   parsed: ParsedResume;
@@ -26,79 +26,79 @@ export const BulletOptimizerTab: React.FC<BulletOptimizerTabProps> = ({ parsed }
 
   return (
     <div className="space-y-6">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-lg font-bold text-white flex items-center gap-2">
-          <Zap className="h-5 w-5 text-amber-400" />
-          STAR Method Bullet Point Enhancer
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
+        <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
+          <Zap className="h-4 w-4 text-amber-500" />
+          STAR Bullet Point Enhancer
         </h3>
-        <p className="text-xs text-slate-400 mt-1">
-          Detects weak, passive, or metric-less bullet points from your resume and suggests high-impact STAR (Situation, Task, Action, Result) rewrites.
+        <p className="text-xs text-slate-500 mt-0.5">
+          Converts passive or unquantified bullets into structured STAR (Situation, Task, Action, Result) accomplishments with power action verbs.
         </p>
       </div>
 
       {improvements.length === 0 ? (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center text-slate-400 text-xs">
-          Your bullet points are already strong with high action-verb density and metrics!
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center text-slate-500 text-xs">
+          Your bullet points are already strong with high action-verb density and metrics.
         </div>
       ) : (
         <div className="space-y-4">
           {improvements.map((item, idx) => (
             <div
               key={idx}
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-3"
+              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-3"
             >
               {/* Weak Original */}
-              <div className="p-3 bg-red-500/5 border border-red-500/20 rounded-xl">
-                <div className="flex items-center gap-2 text-red-400 text-xs font-semibold mb-1">
+              <div className="p-3 bg-red-50/50 border border-red-200/70 rounded-xl">
+                <div className="flex items-center gap-1.5 text-red-800 text-xs font-semibold mb-1">
                   <AlertCircle className="h-3.5 w-3.5" />
-                  <span>Original / Weak Phrasing:</span>
+                  <span>Original Phrasing:</span>
                 </div>
-                <p className="text-xs text-slate-300 italic font-mono">
+                <p className="text-xs text-slate-700 italic">
                   &ldquo;{item.original}&rdquo;
                 </p>
-                <div className="mt-1 text-[11px] text-red-400 font-medium">
+                <div className="mt-1 text-[11px] text-red-700 font-medium">
                   {item.issue}
                 </div>
               </div>
 
-              {/* Conversion Arrow */}
-              <div className="flex justify-center text-slate-500">
-                <ArrowRight className="h-4 w-4 transform rotate-90" />
+              {/* Arrow */}
+              <div className="flex justify-center text-slate-400">
+                <ArrowDown className="h-4 w-4" />
               </div>
 
-              {/* AI Optimized Rewrite */}
-              <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+              {/* Optimized Rewrite */}
+              <div className="p-3.5 bg-emerald-50/60 border border-emerald-200 rounded-xl">
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    <span>AI STAR Enhanced Rewrite:</span>
+                  <div className="flex items-center gap-1.5 text-emerald-900 text-xs font-bold">
+                    <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+                    <span>STAR Method Rewrite:</span>
                   </div>
                   <button
                     onClick={() => handleCopy(item.optimized, idx)}
-                    className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 transition"
+                    className="text-[11px] text-slate-600 hover:text-slate-900 flex items-center gap-1 transition"
                   >
                     {copiedIdx === idx ? (
                       <>
-                        <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Copied</span>
+                        <Check className="h-3 w-3 text-emerald-600" />
+                        <span className="text-emerald-700 font-medium">Copied</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="h-3.5 w-3.5" />
+                        <Copy className="h-3 w-3" />
                         <span>Copy Rewrite</span>
                       </>
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-slate-100 font-semibold leading-relaxed">
+                <p className="text-xs text-slate-900 font-medium leading-relaxed">
                   {item.optimized}
                 </p>
-                <div className="mt-2 flex items-center gap-3 text-[10px] text-slate-400">
+                <div className="mt-2 flex items-center gap-3 text-[10px] text-slate-600">
                   <span>
-                    Power Verb: <strong className="text-emerald-400">{item.actionVerbUsed}</strong>
+                    Power Verb: <strong className="text-emerald-700">{item.actionVerbUsed}</strong>
                   </span>
                   <span>
-                    Quantified Outcome: <strong className="text-emerald-400">{item.metricAdded}</strong>
+                    Outcome: <strong className="text-emerald-700">{item.metricAdded}</strong>
                   </span>
                 </div>
               </div>
